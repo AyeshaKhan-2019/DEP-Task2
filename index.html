@@ -196,47 +196,52 @@
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button id="close1" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <h4 class="text-center fw-bold border-bottom border-2 pb-2"><span style="color: #b89b5e;">Reservation for</br>Lunch Buffet</span></h4>
                     
                 <div class="modal-body mx-2">
                     
-                    <form action="#">
+                    <form name="LReg" id="LReg" onsubmit="return validateLunch()">
                         <div class="row g-4">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="lname">Full Name</label>
+                                    <label for="lname" class="fw-semibold my-1">Full Name</label>
                                     <input type="text" class="form-control" id="lname" placeholder="Full Name" required>
-                                    
+                                    <small id="lnameError" class="error-msg">Please enter your Full Name</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="lphone">Phone</label>
-                                    <input type="text" inputmode="numeric" class="form-control" id="lphone" placeholder="Phone" required>                                    
+                                    <label for="lphone" class="fw-semibold my-1">Phone</label>
+                                    <input type="text" inputmode="numeric" class="form-control" id="lphone" placeholder="Phone" required>
+                                    <small id="lphoneError" class="error-msg">Please enter your Contact Number (0-9) in 12 digits format: 92XXXXXXXXXX</small>                                    
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="lemail">Email</label>
+                                    <label for="lemail" class="fw-semibold my-1">Email</label>
                                     <input type="email" class="form-control" id="lemail" placeholder="Your Email" required>
+                                    <small id="lemailError" class="error-msg">Please enter a valid Email Address</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="lp">Number of People</label>
-                                    <input type="number" class="form-control" id="lp" min="1" placeholder="Number of People" required>                                    
+                                    <label for="lp" class="fw-semibold my-1">Number of People</label>
+                                    <input type="number" class="form-control" id="lp" min="1" max="15" placeholder="Number of People" required>   
+                                    <small id="lpError" class="error-msg">Please enter Number of People (0-9) between 1-15</small>                                 
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="ldate">Select Date</label>
+                                    <label for="ldate" class="fw-semibold my-1">Select Date</label>
                                     <input type="date" class="form-control" id="ldate" placeholder="Enter Date" required>
+                                    <small id="ldateError1" class="error-msg">Reservation Date is required.</small>
+                                    <small id="ldateError2" class="error-msg">You cannot select past or today's date.</small>
                                 </div>
                             </div>
                         </br>
-                                <button type="submit" class="btn btn-primary">SUBMIT</button>
+                        <input id="submitL" type="button" value="SUBMIT" class="btn btn-primary" onclick="validateLunch()">
                         </div>
                     </form>
                 </div>
@@ -253,47 +258,52 @@
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button id="close2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                 </div>
                 <h4 class="text-center fw-bold border-bottom border-2 pb-2"><span style="color: #b89b5e;">Reservation for</br>Hi-Tea Buffet</span></h4>
                     
                 <div class="modal-body mx-2">
                     
-                    <form action="#">
+                    <form name="HReg" id="HReg" onsubmit="return validateHiTea()">
                         <div class="row g-4">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="hname">Full Name</label>
+                                    <label for="hname" class="fw-semibold my-1">Full Name</label>
                                     <input type="text" class="form-control" id="hname" placeholder="Full Name" required>
-                                    
+                                    <small id="hnameError" class="error-msg">Please enter your Full Name</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="hphone">Phone</label>
-                                    <input type="text" inputmode="numeric" class="form-control" id="hphone" placeholder="Phone" required>                                    
+                                    <label for="hphone" class="fw-semibold my-1">Phone</label>
+                                    <input type="text" inputmode="numeric" class="form-control" id="hphone" placeholder="Phone" required>   
+                                    <small id="hphoneError" class="error-msg">Please enter your Contact Number (0-9) in 12 digits format: 92XXXXXXXXXX</small>                                 
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="hemail">Email</label>
+                                    <label for="hemail" class="fw-semibold my-1">Email</label>
                                     <input type="email" class="form-control" id="hemail" placeholder="Your Email" required>
+                                    <small id="hemailError" class="error-msg">Please enter a valid Email Address</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="hp">Number of People</label>
-                                    <input type="number" class="form-control" id="hp" min="1" placeholder="Number of People" required>                                    
+                                    <label for="hp" class="fw-semibold my-1">Number of People</label>
+                                    <input type="number" class="form-control" id="hp" min="1" max="15" placeholder="Number of People" required>    
+                                    <small id="hpError" class="error-msg">Please enter Number of People (0-9) between 1-15</small>                                
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="hdate">Select Date</label>
+                                    <label for="hdate" class="fw-semibold my-1">Select Date</label>
                                     <input type="date" class="form-control" id="hdate" placeholder="Enter Date" required>
+                                    <small id="hdateError1" class="error-msg">Reservation Date is required.</small>
+                                    <small id="hdateError2" class="error-msg">You cannot select past or today's date.</small>
                                 </div>
                             </div>
                         </br>
-                                <button type="submit" class="btn btn-primary">SUBMIT</button>
+                        <input id="submitH" type="button" value="SUBMIT" class="btn btn-primary" onclick="validateHiTea()">
                         </div>
                     </form>
                 </div>
@@ -310,47 +320,53 @@
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button id="close3" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <h4 class="text-center fw-bold border-bottom border-2 pb-2"><span style="color: #b89b5e;">Reservation for</br>Dinner Buffet</span></h4>
                     
                 <div class="modal-body mx-2">
                     
-                    <form action="#">
+                    <form name="DReg" id="DReg" onsubmit="return validateDinner()">
                         <div class="row g-4">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="dname">Full Name</label>
+                                    <label for="dname" class="fw-semibold my-1">Full Name</label>
                                     <input type="text" class="form-control" id="dname" placeholder="Full Name" required>
-                                    
+                                    <small id="dnameError" class="error-msg">Please enter your Full Name</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="dphone">Phone</label>
-                                    <input type="text" inputmode="numeric" class="form-control" id="dphone" placeholder="Phone" required>                                    
+                                    <label for="dphone" class="fw-semibold my-1">Phone</label>
+                                    <input type="text" inputmode="numeric" class="form-control" id="dphone" placeholder="Phone" required>  
+                                    <small id="dphoneError" class="error-msg">Please enter your Contact Number (0-9) in 12 digits format: 92XXXXXXXXXX</small>                                  
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="demail">Email</label>
+                                    <label for="demail" class="fw-semibold my-1">Email</label>
                                     <input type="email" class="form-control" id="demail" placeholder="Your Email" required>
+                                    <small id="demailError" class="error-msg">Please enter a valid Email Address</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="dp">Number of People</label>
-                                    <input type="number" class="form-control" id="dp" min="1" placeholder="Number of People" required>                                    
+                                    <label for="dp" class="fw-semibold my-1">Number of People</label>
+                                    <input type="number" class="form-control" id="dp" min="1" max="15" placeholder="Number of People" required>  
+                                    <small id="dpError" class="error-msg">Please enter Number of People (0-9) between 1-15</small>                                  
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="ddate">Select Date</label>
+                                    <label for="ddate" class="fw-semibold my-1">Select Date</label>
                                     <input type="date" class="form-control" id="ddate" placeholder="Enter Date" required>
+                                    <small id="ddateError1" class="error-msg">Reservation Date is required.</small>
+                                    <small id="ddateError2" class="error-msg">You cannot select past or today's date.</small>
+                                   
                                 </div>
                             </div>
                         </br>
-                                <button type="submit" class="btn btn-primary">SUBMIT</button>
+                        <input id="submitD" type="button" value="SUBMIT" class="btn btn-primary" onclick="validateDinner()">
                         </div>
                     </form>
                 </div>
@@ -528,6 +544,126 @@
     <script src="js/main.js" defer></script>
    
 
+    <!-- Form Validation Javascript -->
+    <script type = "text/javascript">
+        
+    const element1 = document.getElementById("close1");
+    const element2 = document.getElementById("close2");
+    const element3 = document.getElementById("close3");
+    element1.addEventListener("click", clear);
+    element2.addEventListener("click", clear);
+    element3.addEventListener("click", clear);
+
+        function clear()
+        {
+            document.getElementById("LReg").reset(); 
+            document.getElementById("HReg").reset(); 
+            document.getElementById("DReg").reset(); 
+        }
+
+
+    ////////Dinner Reservation//////////////
+        function validateDinner() {
+          const dname = document.getElementById("dname");
+          const dphone = document.getElementById("dphone");
+          const demail = document.getElementById("demail");
+          const dp = document.getElementById("dp");
+          const ddate = document.getElementById("ddate");
+        
+          const dnameError = document.getElementById("dnameError");
+          const dphoneError = document.getElementById("dphoneError");
+          const demailError = document.getElementById("demailError");
+          const dpError = document.getElementById("dpError");
+          const ddateError1 = document.getElementById("ddateError1");  
+          const ddateError2 = document.getElementById("ddateError2");  
+                
+          
+          let isValid = true;
+        
+          //Name
+          if (dname.value == "" || dname.value == null) {
+            dnameError.style.display = "block";
+            dname.scrollIntoView();
+            dname.focus();
+            isValid = false;
+          }
+          else{
+            dnameError.style.display = "none";
+          }
+        
+          //Phone
+          if (dphone.value == "" || dphone.value == null || isNaN(dphone.value) || dphone.value.length != 12) {
+            dphoneError.style.display = "block";
+            dphone.scrollIntoView();
+            dphone.focus();
+            isValid = false;
+          }
+          else{
+            dphoneError.style.display = "none";
+          }
+        
+          //Email
+          const atposition= demail.value.indexOf("@");  
+          const dotposition= demail.value.lastIndexOf(".");  
+        
+          if (demail.value == "" || demail.value == null || atposition<1 || dotposition<atposition+2 || dotposition+2>=demail.value.length ) {
+            demailError.style.display = "block";
+            demail.scrollIntoView();
+            demail.focus();
+            isValid = false;
+          }
+          else{
+            demailError.style.display = "none";
+          }
+        
+          //People
+          if (dp.value == "" || dp.value == null || isNaN(dp.value) ) {
+            dpError.style.display = "block";
+            dp.scrollIntoView();
+            dp.focus();
+            isValid = false;
+          }
+          else{
+            dpError.style.display = "none";
+          }
+        
+          //Date
+          const today = new Date().toISOString().split("/")[0];
+
+          if (ddate.value == "" || ddate.value == null) {
+            ddateError2.style.display = "none";
+            ddateError1.style.display = "block";
+            ddate.scrollIntoView();
+            ddate.focus();
+            isValid = false;
+          }          
+          else if (ddate.value <= today) {
+            ddateError1.style.display = "none";
+            ddateError2.style.display = "block";
+            ddate.scrollIntoView();
+            ddate.focus();
+            isValid = false;
+          }          
+          else{
+            ddateError1.style.display = "none";
+            ddateError2.style.display = "none";
+          }
+
+
+          if(isValid == true)
+          {
+            alert("Your table has been successfully reserved.")
+            document.getElementById("DReg").reset(); 
+          }
+        
+          return isValid;
+        }
+        ////////\\\Dinner Reservation\\\//////////////
+        
+        </script>
+        
+        
+            <!-- //Form Validation Javascript -->
 
     
 </body>
