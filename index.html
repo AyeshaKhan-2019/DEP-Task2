@@ -147,7 +147,7 @@
                             Enjoy the scrumptious Lunch buffet With Variety of Pakistani, Chinese and Continental Cuisine in Karachi. TMF is offering The Best Deal packed with flavor And prepared to stringent health and safety guidelines in the city of lights with luxurious ambience.<br>
                             Reserve your table now! from 1.00pm-3.30pm (Fri-Sun) 
                             <br>
-                            <button type="button" class="btn btn-primary fs-6 rounded-0 mt-3" data-bs-toggle="modal" data-bs-target="#lform">Book Table</button>
+                            <button id="lbook" type="button" class="btn btn-primary fs-6 rounded-0 mt-3" data-bs-toggle="modal" data-bs-target="#lform">Book Table</button>
                         </div>
                       </div>
                     </div>
@@ -161,7 +161,7 @@
                         <div class="accordion-body text-white my-2">
                             Evenings are delightful, make them more memorable with TMF. Get away from your usual surroundings and enjoy Hi Tea out in the big wide world. We offer the most exceptional variety of Hi-Tea experiences. From the décor and service to the exquisitely presented sweet and savory treats, rest assured that TMF has something for everyone. So what are you waiting for? Reserve your table now! from 4.30pm-6.30pm (Fri-Sun)
                             <br>
-                            <button type="button" class="btn btn-primary fs-6 rounded-0 mt-3" data-bs-toggle="modal" data-bs-target="#hform">Book Table</button>
+                            <button id="hbook" type="button" class="btn btn-primary fs-6 rounded-0 mt-3" data-bs-toggle="modal" data-bs-target="#hform">Book Table</button>
                         </div>
                       </div>
                     </div>
@@ -176,7 +176,7 @@
                             Enjoy the scrumptious dinner buffet With Variety of Pakistani, Chinese and Continental Cuisine in Karachi. TMF is offering The Best Deal packed with flavor And prepared to stringent health and safety guidelines in the city of lights with luxurious ambience.<br>
                             Reserve your table now! from 8.00pm-10.00pm (Fri-Sun) 
                             <br>
-                            <button type="button" class="btn btn-primary fs-6 rounded-0 mt-3" data-bs-toggle="modal" data-bs-target="#dform">Book Table</button>
+                            <button id="dbook" type="button" class="btn btn-primary fs-6 rounded-0 mt-3" data-bs-toggle="modal" data-bs-target="#dform">Book Table</button>
                         </div>
                       </div>
                     </div>
@@ -550,17 +550,222 @@
     const element1 = document.getElementById("close1");
     const element2 = document.getElementById("close2");
     const element3 = document.getElementById("close3");
+    const element4 = document.getElementById("lbook");
+    const element5 = document.getElementById("hbook");
+    const element6 = document.getElementById("dbook");
     element1.addEventListener("click", clear);
     element2.addEventListener("click", clear);
     element3.addEventListener("click", clear);
+    element4.addEventListener("click", clear);
+    element5.addEventListener("click", clear);
+    element6.addEventListener("click", clear);
 
         function clear()
         {
+
             document.getElementById("LReg").reset(); 
             document.getElementById("HReg").reset(); 
             document.getElementById("DReg").reset(); 
+            $(".error-msg").hide();
+            
         }
+    
+    ////////Lunch Reservation//////////////
+    function validateLunch() {
+          const lname = document.getElementById("lname");
+          const lphone = document.getElementById("lphone");
+          const lemail = document.getElementById("lemail");
+          const lp = document.getElementById("lp");
+          const ldate = document.getElementById("ldate");
+        
+          const lnameError = document.getElementById("lnameError");
+          const lphoneError = document.getElementById("lphoneError");
+          const lemailError = document.getElementById("lemailError");
+          const lpError = document.getElementById("lpError");
+          const ldateError1 = document.getElementById("ldateError1");  
+          const ldateError2 = document.getElementById("ldateError2");  
+                
+          
+          let isValid = true;
+        
+          //Name
+          if (lname.value == "" || lname.value == null) {
+            lnameError.style.display = "block";
+            lname.scrollIntoView();
+            lname.focus();
+            isValid = false;
+          }
+          else{
+            lnameError.style.display = "none";
+          }
+        
+          //Phone
+          if (lphone.value == "" || lphone.value == null || isNaN(lphone.value) || lphone.value.length != 12) {
+            lphoneError.style.display = "block";
+            lphone.scrollIntoView();
+            lphone.focus();
+            isValid = false;
+          }
+          else{
+            lphoneError.style.display = "none";
+          }
+        
+          //Email
+          const atposition= lemail.value.indexOf("@");  
+          const dotposition= lemail.value.lastIndexOf(".");  
+        
+          if (lemail.value == "" || lemail.value == null || atposition<1 || dotposition<atposition+2 || dotposition+2>=lemail.value.length ) {
+            lemailError.style.display = "block";
+            lemail.scrollIntoView();
+            lemail.focus();
+            isValid = false;
+          }
+          else{
+            lemailError.style.display = "none";
+          }
+        
+          //People
+          if (lp.value == "" || lp.value == null || isNaN(lp.value) ) {
+            lpError.style.display = "block";
+            lp.scrollIntoView();
+            lp.focus();
+            isValid = false;
+          }
+          else{
+            lpError.style.display = "none";
+          }
+        
+          //Date
+          const ltoday = new Date().toISOString().split("/")[0];
 
+          if (ldate.value == "" || ldate.value == null) {
+            ldateError2.style.display = "none";
+            ldateError1.style.display = "block";
+            ldate.scrollIntoView();
+            ldate.focus();
+            isValid = false;
+          }          
+          else if (ldate.value <= ltoday) {
+            ldateError1.style.display = "none";
+            ldateError2.style.display = "block";
+            ldate.scrollIntoView();
+            ldate.focus();
+            isValid = false;
+          }          
+          else{
+            ldateError1.style.display = "none";
+            ldateError2.style.display = "none";
+          }
+
+
+          if(isValid == true)
+          {
+            alert("Your table has been successfully reserved for Lunch Buffet.")
+            document.getElementById("LReg").reset(); 
+          }
+        
+          return isValid;
+        }
+    ////////\\\Lunch Reservation\\\//////////////
+    
+    ////////Hi-Tea Reservation//////////////
+    function validateHiTea() {
+          const hname = document.getElementById("hname");
+          const hphone = document.getElementById("hphone");
+          const hemail = document.getElementById("hemail");
+          const hp = document.getElementById("hp");
+          const hdate = document.getElementById("hdate");
+        
+          const hnameError = document.getElementById("hnameError");
+          const hphoneError = document.getElementById("hphoneError");
+          const hemailError = document.getElementById("hemailError");
+          const hpError = document.getElementById("hpError");
+          const hdateError1 = document.getElementById("hdateError1");  
+          const hdateError2 = document.getElementById("hdateError2");  
+                
+          
+          let isValid = true;
+        
+          //Name
+          if (hname.value == "" || hname.value == null) {
+            hnameError.style.display = "block";
+            hname.scrollIntoView();
+            hname.focus();
+            isValid = false;
+          }
+          else{
+            hnameError.style.display = "none";
+          }
+        
+          //Phone
+          if (hphone.value == "" || hphone.value == null || isNaN(hphone.value) || hphone.value.length != 12) {
+            hphoneError.style.display = "block";
+            hphone.scrollIntoView();
+            hphone.focus();
+            isValid = false;
+          }
+          else{
+            hphoneError.style.display = "none";
+          }
+        
+          //Email
+          const atposition= hemail.value.indexOf("@");  
+          const dotposition= hemail.value.lastIndexOf(".");  
+        
+          if (hemail.value == "" || hemail.value == null || atposition<1 || dotposition<atposition+2 || dotposition+2>=hemail.value.length ) {
+            hemailError.style.display = "block";
+            hemail.scrollIntoView();
+            hemail.focus();
+            isValid = false;
+          }
+          else{
+            hemailError.style.display = "none";
+          }
+        
+          //People
+          if (hp.value == "" || hp.value == null || isNaN(hp.value) ) {
+            hpError.style.display = "block";
+            hp.scrollIntoView();
+            hp.focus();
+            isValid = false;
+          }
+          else{
+            hpError.style.display = "none";
+          }
+        
+          //Date
+          const htoday = new Date().toISOString().split("/")[0];
+
+          if (hdate.value == "" || hdate.value == null) {
+            hdateError2.style.display = "none";
+            hdateError1.style.display = "block";
+            hdate.scrollIntoView();
+            hdate.focus();
+            isValid = false;
+          }          
+          else if (hdate.value <= htoday) {
+            hdateError1.style.display = "none";
+            hdateError2.style.display = "block";
+            hdate.scrollIntoView();
+            hdate.focus();
+            isValid = false;
+          }          
+          else{
+            hdateError1.style.display = "none";
+            hdateError2.style.display = "none";
+          }
+
+
+          if(isValid == true)
+          {
+            alert("Your table has been successfully reserved for Hi-tea Buffet.")
+            document.getElementById("HReg").reset(); 
+          }
+        
+          return isValid;
+        }
+    ////////\\\Hi-Tea Reservation\\\//////////////
+    
 
     ////////Dinner Reservation//////////////
         function validateDinner() {
@@ -652,18 +857,16 @@
 
           if(isValid == true)
           {
-            alert("Your table has been successfully reserved.")
+            alert("Your table has been successfully reserved for Dinner Buffet.")
             document.getElementById("DReg").reset(); 
           }
         
           return isValid;
         }
-        ////////\\\Dinner Reservation\\\//////////////
+    ////////\\\Dinner Reservation\\\//////////////
         
-        </script>
-        
-        
-            <!-- //Form Validation Javascript -->
+    </script>
+    <!-- //Form Validation Javascript -->
 
     
 </body>
